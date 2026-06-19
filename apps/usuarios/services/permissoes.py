@@ -64,6 +64,10 @@ def obter_funcionario_usuario(user):
         return None
 
     try:
-        return user.funcionario
+        return Funcionario.objects.select_related(
+            'user',
+            'perfil',
+            'unidade'
+        ).get(user=user)
     except Funcionario.DoesNotExist:
         return None

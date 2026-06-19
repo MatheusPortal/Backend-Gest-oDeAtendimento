@@ -36,8 +36,8 @@ class UsuarioLogadoSerializer(serializers.Serializer):
             'id': funcionario.id,
             'nome': funcionario.nome,
             'matricula': funcionario.matricula,
-            'perfil': funcionario.perfil.nome,
-            'perfil_nome': funcionario.perfil.get_nome_display(),
+            'perfil': funcionario.perfil.nome if funcionario.perfil else None,
+            'perfil_nome': funcionario.perfil.get_nome_display() if funcionario.perfil else None,
             'unidade': {
                 'id': funcionario.unidade.id,
                 'nome': funcionario.unidade.nome,

@@ -36,16 +36,7 @@ class UsuarioLogadoView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        serializer = UsuarioLogadoSerializer({
-            'id': request.user.id,
-            'username': request.user.username,
-            'email': request.user.email,
-            'is_superuser': request.user.is_superuser,
-            'acesso_total': request.user.is_superuser,
-            'funcionario': request.user,
-            'permissoes': request.user
-        })
-
+        serializer = UsuarioLogadoSerializer(request.user)
         return Response(serializer.data)
 
 
