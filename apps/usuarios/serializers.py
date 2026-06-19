@@ -16,15 +16,17 @@ from apps.usuarios.models import (
 )
 
 
-
 class UsuarioLogadoSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     username = serializers.CharField()
     email = serializers.EmailField(allow_blank=True)
     is_superuser = serializers.BooleanField()
-    acesso_total = serializers.BooleanField()
+    acesso_total = serializers.SerializerMethodField()
     funcionario = serializers.SerializerMethodField()
     permissoes = serializers.SerializerMethodField()
+
+    def get_acesso_total(self, user):
+        return user.is_superuser
 
     def get_funcionario(self, user):
         funcionario = obter_funcionario_usuario(user)
@@ -48,7 +50,9 @@ class UsuarioLogadoSerializer(serializers.Serializer):
 
     def get_permissoes(self, user):
         return obter_permissoes_usuario(user)
-    
+
+
+
 
 class FuncionarioSerializer(serializers.ModelSerializer):
     user_id = serializers.IntegerField(source='user.id', read_only=True)
