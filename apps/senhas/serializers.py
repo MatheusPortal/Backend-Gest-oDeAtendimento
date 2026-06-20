@@ -194,8 +194,8 @@ class PainelSenhaSerializer(serializers.ModelSerializer):
 
     unidade_nome = serializers.CharField(source='unidade.nome', read_only=True)
     status_nome = serializers.CharField(source='get_status_display', read_only=True)
-    guiche_numero = serializers.CharField(source='guiche.numero', read_only=True)
-    guiche_nome = serializers.CharField(source='guiche.nome', read_only=True)
+    guiche_numero = serializers.SerializerMethodField()
+    guiche_nome = serializers.SerializerMethodField()
 
     class Meta:
         model = Senha
