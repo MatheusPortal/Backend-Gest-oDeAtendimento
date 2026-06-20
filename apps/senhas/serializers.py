@@ -215,7 +215,17 @@ class PainelSenhaSerializer(serializers.ModelSerializer):
             'guiche_numero',
             'guiche_nome',
         ]
+    def get_guiche_numero(self, obj):
+        if obj.guiche:
+            return obj.guiche.numero
 
+        return None
+
+    def get_guiche_nome(self, obj):
+        if obj.guiche:
+            return obj.guiche.nome
+
+        return None
 
 class HistoricoSenhaSerializer(serializers.ModelSerializer):
     categoria_nome = serializers.CharField(source='categoria.nome', read_only=True)
