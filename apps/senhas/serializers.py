@@ -211,7 +211,7 @@ class PainelSenhaSerializer(serializers.ModelSerializer):
             'status',
             'status_nome',
             'gerada_em',
-            'chamada_em'
+            'chamada_em',
             'guiche_numero',
             'guiche_nome',
         ]
